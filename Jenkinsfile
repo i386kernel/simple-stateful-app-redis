@@ -2,7 +2,7 @@ pipeline {
     // install golang 1.19.1 on Jenkins node
     agent any
     tools {
-        go '1.19.1'
+        go '1.19'
     }
     // Define different states for golang app
     stages {
@@ -23,7 +23,7 @@ pipeline {
         stage("build") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
-                sh 'sudo chmod -R 777 ./*'
+                sh 'chmod -R 777 ./*'
                 sh 'GOOS=linux GOARCH=amd64 go build -o time-app .'
                 sh 'chmod +x time-app'
             }
