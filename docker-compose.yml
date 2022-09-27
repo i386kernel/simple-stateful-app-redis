@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  current-time:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: docker.io/lnanjangud653/current-time:1.0.0
+    ports:
+      - '8888:8888'
+    environment:
+      - REDIS_URL="redis-server:6379"
+      - REDIS_PASSWORD="VMware1!"
+  redis-server:
+    image: redis:latest
+    volumes:
+      - "/Users/lnanjangud/GolandProjects/Experimental-02/redis-data:/data"
