@@ -11,6 +11,16 @@ func TestAddUP(t *testing.T) {
 	}
 }
 
+//
+//var num = 1000
+//
+//func BenchmarkRedisReq(t *testing.B) {
+//	fmt.Println("====Querying 1000 items from Redis=====")
+//	for i := 0; i < num; i++ {
+//		redisGET("IST")
+//	}
+//}
+
 //func TestgetCurrentTimeWithTimeDifference(t *testing.T) {
 //
 //	time1 := time.Now()
