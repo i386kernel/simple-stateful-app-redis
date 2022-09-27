@@ -27,7 +27,6 @@ pipeline {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'GOOS=linux GOARCH=amd64 go build -o time-app .'
                 sh 'chmod +x time-app'
-'
             }
         }
 //         stage('deliver') {
