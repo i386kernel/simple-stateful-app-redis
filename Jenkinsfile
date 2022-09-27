@@ -23,7 +23,7 @@ pipeline {
                 echo 'FUNCTIONAL TEST EXECUTION STARTED'
             }
         }
-    // Perform Build
+    // Build Go Binary
         stage("build") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
@@ -32,7 +32,7 @@ pipeline {
                 sh 'chmod +x time-app'
             }
         }
-    // Docker Build
+    //  Build Docker dockerImage
         stage("docker build"){
             steps{
                script{
@@ -40,6 +40,7 @@ pipeline {
                }
             }
         }
+    // Docker Push
         stage('Pushing Image'){
            environment {
                 registryCredential = 'dockerhubcreds'
@@ -52,17 +53,10 @@ pipeline {
             }
            }
         }
+        stage ("Test Kubernetes"){
+        steps{
+            sh 'kubectl get ns'
+        }
+        }
     }
 }
-//         stage('deliver') {
-//             agent any
-//             steps {
-//                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
-//                 sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
-//                 sh 'docker push shadowshotx/product-go-micro'
-//                 }
-//             }
-//         }
-//     }
-
-
