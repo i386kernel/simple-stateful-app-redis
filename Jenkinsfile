@@ -36,6 +36,8 @@ pipeline {
             }
 
         }
+    }
+}
 //         stage('deliver') {
 //             agent any
 //             steps {
@@ -44,7 +46,7 @@ pipeline {
 //                 sh 'docker push shadowshotx/product-go-micro'
 //                 }
 //             }
-        }
-    }
-}
+//         }
+//     }
+
 
