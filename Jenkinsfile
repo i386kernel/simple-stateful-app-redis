@@ -23,7 +23,7 @@ pipeline {
         stage("build") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
-                sh 'go env GOCACHE=off'
+                sh 'go env GOCACHE=/tmp/.cache'
                 sh 'GOOS=linux GOARCH=amd64 go build -o time-app .'
                 sh 'chmod +x time-app'
             }
