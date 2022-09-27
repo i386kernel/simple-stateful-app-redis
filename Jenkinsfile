@@ -58,6 +58,7 @@ pipeline {
         steps{
             sh 'kubectl get ns --kubeconfig=/home/bitnami/config'
         }
+        }
     // Test Tanzu
        stage("Test Tanzu"){
        agent {
@@ -67,5 +68,6 @@ pipeline {
             sh 'tanzu cluster list --include-management-cluster'
            }
        }
-  }
+    }
+}
 
