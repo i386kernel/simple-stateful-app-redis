@@ -66,6 +66,6 @@ pipeline {
        steps{
             sh 'tanzu cluster list --include-management-cluster'
            }
-        }
-    }
-}
+       }
+  }
+
