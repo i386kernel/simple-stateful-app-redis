@@ -29,6 +29,9 @@ pipeline {
                 sh 'chmod +x time-app'
             }
         }
+   }
+}
+
 //         stage('deliver') {
 //             agent any
 //             steps {
