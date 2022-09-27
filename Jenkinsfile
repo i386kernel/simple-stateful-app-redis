@@ -55,17 +55,17 @@ pipeline {
         }
     // Test Kubernetes
         stage ("Test Kubernetes"){
-        node('tanzu-node'){
         steps{
             sh 'kubectl get ns --kubeconfig=/home/bitnami/config'
         }
-         }
     // Test Tanzu
        stage("Test Tanzu"){
-       node('tanzu-node'){
+       agent {
+            label 'tanzu-mgmt'
+       }
+       steps{
             sh 'tanzu cluster list --include-management-cluster'
-       }
-       }
+           }
         }
     }
 }
