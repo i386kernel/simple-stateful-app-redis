@@ -9,13 +9,13 @@ pipeline {
 //         CGO_ENABLED = 0
 //         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
 //     }
-    stages {
-        stage("unit-test") {
-            steps {
-                echo 'UNIT TEST EXECUTION STARTED'
-                sh 'go test'
-            }
-        }
+//     stages {
+//         stage("unit-test") {
+//             steps {
+//                 echo 'UNIT TEST EXECUTION STARTED'
+//                 sh 'go test'
+//             }
+//         }
 //         stage("functional-test") {
 //             steps {
 //                 echo 'FUNCTIONAL TEST EXECUTION STARTED'
