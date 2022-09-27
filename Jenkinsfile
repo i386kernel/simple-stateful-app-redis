@@ -56,7 +56,7 @@ pipeline {
     // Test Kubernetes
         stage ("Test Kubernetes"){
         steps{
-            sh 'kubectl get ns --kubeconfig="/home/bitnami/config'
+            sh 'kubectl get ns --kubeconfig=/home/bitnami/config'
         }
         }
     }
