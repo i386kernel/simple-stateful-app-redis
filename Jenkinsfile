@@ -4,34 +4,38 @@ pipeline {
     tools {
         go '1.19.1'
     }
-//     environment {
-//         GO114MODULE = 'on'
-//         CGO_ENABLED = 0
-//         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
-//     }
+    // Define different states for golang app
     stages {
-//         stage("unit-test") {
-//             steps {
-//                 echo 'UNIT TEST EXECUTION STARTED'
-//                 sh 'go test'
-//             }
-//         }
-//         stage("functional-test") {
-//             steps {
-//                 echo 'FUNCTIONAL TEST EXECUTION STARTED'
-//                 sh 'make functional-tests'
-//             }
-//         }
+    // Perform Unit Test
+        stage("unit-test") {
+            steps {
+                echo 'UNIT TEST EXECUTION STARTED'
+              //  sh 'go test'
+            }
+        }
+    // Perform Functional Test
+        stage("functional-test") {
+            steps {
+                echo 'FUNCTIONAL TEST EXECUTION STARTED'
+            }
+        }
+    // Perform Build
         stage("build") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
+                sh 'export GOCACHE=off'
                 sh 'GOOS=linux GOARCH=amd64 go build -o time-app .'
                 sh 'chmod +x time-app'
             }
         }
-   }
-}
+    // Docker Build
+        stage("docker build"){
+            steps{
+                echo 'BUILD DOCKER IMAGES'
+                sh 'docker build .'
+            }
 
+        }
 //         stage('deliver') {
 //             agent any
 //             steps {
@@ -40,6 +44,7 @@ pipeline {
 //                 sh 'docker push shadowshotx/product-go-micro'
 //                 }
 //             }
-//         }
-//     }
-// }
+        }
+    }
+}
+
