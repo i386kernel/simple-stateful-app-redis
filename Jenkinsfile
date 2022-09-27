@@ -45,6 +45,7 @@ pipeline {
                 registryCredential = 'dockerhubcreds'
            }
            steps{
+                sh 'usermod -a -G docker jenkins'
             script{
                 docker.withRegistry('https://registry.hub.docker.com', registryCredential){
                     dockerImage.push("latest")
