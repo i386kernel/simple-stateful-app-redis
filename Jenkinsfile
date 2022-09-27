@@ -1,4 +1,8 @@
 pipeline {
+    environment{
+        dockerimagename = "lnanjangud653/time-app"
+        dockerImage = ""
+    }
     // install golang 1.19.1 on Jenkins node
     agent any
     tools {
@@ -31,10 +35,22 @@ pipeline {
     // Docker Build
         stage("docker build"){
             steps{
-                echo 'BUILD DOCKER IMAGES'
-                sh 'docker build .'
+               script{
+                    dockerImage = docker.build dockerimagename
+               }
             }
-
+        }
+        stage('Pushing Image'){
+           environment {
+                registryCredential = 'dockerhubcreds'
+           }
+           steps{
+            script{
+                docker.withRegistry('https://registry.hub.docker.com', registryCredential){
+                    dockerImage.push("latest")
+                }
+            }
+           }
         }
     }
 }
