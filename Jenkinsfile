@@ -11,20 +11,20 @@ pipeline {
     // Define different states for golang app
     stages {
     // Perform Unit Test
-        stage("unit-test") {
+        stage("Unit-Test") {
             steps {
                 echo 'UNIT TEST EXECUTION STARTED'
               //  sh 'go test'
             }
         }
     // Perform Functional Test
-        stage("functional-test") {
+        stage("Tunctional-Test") {
             steps {
                 echo 'FUNCTIONAL TEST EXECUTION STARTED'
             }
         }
     // Build Go Binary
-        stage("build") {
+        stage("App Build") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go env GOCACHE=/tmp/.cache'
@@ -33,7 +33,7 @@ pipeline {
             }
         }
     //  Build Docker dockerImage
-        stage("docker build"){
+        stage("Docker Build"){
             steps{
                script{
                     dockerImage = docker.build dockerimagename
@@ -41,7 +41,7 @@ pipeline {
             }
         }
     // Docker Push
-        stage('Pushing Image'){
+        stage('Docker Push'){
            environment {
                 registryCredential = 'dockerhubcreds'
            }
@@ -54,7 +54,7 @@ pipeline {
            }
         }
     // Test Kubernetes
-        stage ("Test Kubernetes"){
+        stage ("Apply Kubernetes Manifests"){
         agent {
                     label 'tanzu-mgmt'
                }
