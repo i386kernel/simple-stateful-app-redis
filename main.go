@@ -115,5 +115,5 @@ func main() {
 	http.HandleFunc("/convert", loggingMiddleware(handler))
 	http.HandleFunc("/", loggingMiddleware(notFoundHandler))
 	log.Printf("%s - Starting server on port: 8888", time.Now().Format("12-12-1983 20:18"))
-	log.Fatal(http.ListenAndServe("localhost:8888", nil))
+	log.Fatal(http.ListenAndServe(":8888", nil))
 }
