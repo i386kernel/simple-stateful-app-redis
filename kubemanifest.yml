@@ -16,11 +16,15 @@ spec:
         - name: time-app
           image: time-app:1.0.0
           imagePullPolicy: IfNotPresent
+          env:
+            - name: "REDIS_URL"
+              value: "172.16.48.34:6379"
+            - name: "REDIS_PASSWORD"
+              value: "VMware1!"
       restartPolicy: Always
   selector:
     matchLabels:
       app: time-app
-
 ---
 apiVersion: v1
 kind: Service
@@ -34,37 +38,37 @@ spec:
   type: LoadBalancer
   
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis
-  labels:
-    app: redis
-spec:
-  replicas: 1
-  template:
-    metadata:
-      name: redis
-      labels:
-        app: redis
-    spec:
-      containers:
-        - name: redis
-          image: redis
-          imagePullPolicy: IfNotPresent
-      restartPolicy: Always
-  selector:
-    matchLabels:
-      app: redis
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis
-spec:
-  selector:
-    app: redis
-  ports:
-    - port: 8080
-  type: ClusterIP
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: redis
+#  labels:
+#    app: redis
+#spec:
+#  replicas: 1
+#  template:
+#    metadata:
+#      name: redis
+#      labels:
+#        app: redis
+#    spec:
+#      containers:
+#        - name: redis
+#          image: redis
+#          imagePullPolicy: IfNotPresent
+#      restartPolicy: Always
+#  selector:
+#    matchLabels:
+#      app: redis
+#
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: redis
+#spec:
+#  selector:
+#    app: redis
+#  ports:
+#    - port: 8080
+#  type: ClusterIP

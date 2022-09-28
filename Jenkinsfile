@@ -55,8 +55,14 @@ pipeline {
         }
     // Test Kubernetes
         stage ("Test Kubernetes"){
+        agent {
+                    label 'tanzu-mgmt'
+               }
         steps{
-            sh 'kubectl get ns --kubeconfig=/home/bitnami/config'
+            sh 'kubectx tkg-154-wkld01-admin@tkg-154-wkld01'
+            sh 'kubectl create ns time-app'
+            sh 'kubens time-app'
+            sh 'kubectl apply -f kubemanifest.yml'
         }
         }
     // Test Tanzu
