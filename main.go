@@ -62,6 +62,16 @@ func redisGET(key string) (string, error) {
 	return val, nil
 }
 
+func getCurrentTimeWithTimeDifference(timeDifference string) (string, error) {
+	now := time.Now().UTC()
+	diff, err := time.ParseDuration(timeDifference)
+	if err != nil {
+		return " ", err
+	}
+	now = now.Add(diff)
+	return now.Format("15:04:05"), nil
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	timeZone := r.URL.Query().Get("tz")
 	if timeZone == "" {
@@ -74,7 +84,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintf(w, "unable to get the timezone %s\n", err)
 	}
-	fmt.Fprintf(w, "Time in timezone %v is %s\n", timeZone, tf)
+	gtg, err := getCurrentTimeWithTimeDifference(tf)
+	if err != nil {
+		fmt.Println("Unable to get the timedifference")
+	}
+	fmt.Fprintf(w, "Time in timezone %v is %s\n", timeZone, gtg)
 }
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
