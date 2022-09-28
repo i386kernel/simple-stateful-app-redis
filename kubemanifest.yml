@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: time-app
-          image: lnanjangud653/time-app:1.0.0
+          image: lnanjangud653/time-app:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: "REDIS_URL"
