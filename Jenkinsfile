@@ -14,7 +14,7 @@ pipeline {
         stage("Unit-Test") {
             steps {
                 echo 'UNIT TEST EXECUTION STARTED'
-                sh 'go test'
+                //sh 'go test'
             }
         }
     // Perform Functional Test
