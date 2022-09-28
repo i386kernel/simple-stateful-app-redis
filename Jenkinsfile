@@ -54,7 +54,7 @@ pipeline {
            }
         }
     // Test Kubernetes
-        stage ("Apply Kubernetes Manifests"){
+        stage ("Deploy on Tanzu"){
         agent {
                     label 'tanzu-mgmt'
                }
