@@ -18,7 +18,7 @@ pipeline {
             }
         }
     // Perform Functional Test
-        stage("Tunctional-Test") {
+        stage("Functional-Test") {
             steps {
                 echo 'FUNCTIONAL TEST EXECUTION STARTED'
             }
@@ -48,7 +48,7 @@ pipeline {
            steps{
             script{
                 docker.withRegistry('https://registry.hub.docker.com', registryCredential){
-                    dockerImage.push("latest")
+                    dockerImage.push("2.0.0")
                 }
             }
            }
