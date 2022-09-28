@@ -64,14 +64,6 @@ pipeline {
             sh 'kubectl apply -f kubemanifest.yml'
         }
         }
-    // Test Tanzu
-       stage("Test Tanzu"){
-       agent {
-            label 'tanzu-mgmt'
-       }
-       steps{
-            sh 'tanzu cluster list --include-management-cluster'
-           }
        }
     }
 }
