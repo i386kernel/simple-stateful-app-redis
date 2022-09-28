@@ -17,6 +17,8 @@ spec:
         - name: time-app
           image: lnanjangud653/time-app:2.0.0
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
           env:
             - name: "REDIS_URL"
               value: "172.16.48.34:6379"
