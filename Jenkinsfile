@@ -2,6 +2,7 @@ pipeline {
     environment{
         dockerimagename = "lnanjangud653/time-app"
         dockerImage = ""
+        imageVer = "1.0.0"
     }
     // install golang 1.19.1 on Jenkins node
     agent any
