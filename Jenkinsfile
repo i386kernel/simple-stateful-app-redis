@@ -14,7 +14,7 @@ pipeline {
         stage("Unit-Test") {
             steps {
                 echo 'UNIT TEST EXECUTION STARTED'
-              //  sh 'go test'
+                sh 'go test'
             }
         }
     // Perform Functional Test
@@ -48,7 +48,7 @@ pipeline {
            steps{
             script{
                 docker.withRegistry('https://registry.hub.docker.com', registryCredential){
-                    dockerImage.push("latest")
+                    dockerImage.push("1.0.0")
                 }
             }
            }
