@@ -62,7 +62,6 @@ pipeline {
         steps{
            // sh 'kubectx tkg-154-wkld01-admin@tkg-154-wkld01'
             sh 'kubectx tkg-wl-prod-admin@tkg-wl-prod'
-            sh 'kubectl delete ns time-app'
             sh 'kubectl create ns time-app'
             sh 'kubens time-app'
             sh 'kubectl apply -f kubemanifest.yml'
