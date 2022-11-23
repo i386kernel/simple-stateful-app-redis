@@ -60,7 +60,6 @@ pipeline {
                     label 'tanzu-mgmt'
                }
         steps{
-           // sh 'kubectx tkg-154-wkld01-admin@tkg-154-wkld01'
             sh 'kubectx tkg-wl-prod-admin@tkg-wl-prod'
             sh 'kubectl create ns time-app'
             sh 'kubens time-app'
